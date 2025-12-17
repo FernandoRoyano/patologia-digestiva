@@ -43,7 +43,6 @@ export function PlanCard({
       transition: {
         duration: 0.6,
         delay: i * 0.15,
-        ease: 'easeOut' as const,
       },
     }),
   };
@@ -54,18 +53,20 @@ export function PlanCard({
       custom={index}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      variants={variants}
+      variants={variants as any}
       className={`${cardClass} hover-lift`}
       whileHover={{ y: -4 }}
     >
       <p className={styles.label}>{label}</p>
       <h3 className={styles.name}>{name}</h3>
       <p className={styles.description}>{description}</p>
+
       <ul className={styles.list}>
         {items.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
+
       <motion.a
         href={href}
         className={ctaClass}
