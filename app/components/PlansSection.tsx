@@ -13,7 +13,7 @@ export function PlansSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: 'easeOut' },
+      transition: { duration: 0.7 },
     },
   };
 
@@ -23,7 +23,7 @@ export function PlansSection() {
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        variants={titleVariants}
+        variants={titleVariants as any}
         className={styles.plansHeader}
       >
         <h2 className={styles.plansTitle}>
