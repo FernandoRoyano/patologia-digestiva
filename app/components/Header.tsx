@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import styles from "../styles/Header.module.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState } from "react";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuVariants = {
+  const menuVariants: Variants = {
     hidden: { opacity: 0, height: 0 },
     visible: {
       opacity: 1,
       height: "auto",
-      transition: { duration: 0.3, ease: "easeOut" },
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
     },
     exit: {
       opacity: 0,
@@ -22,7 +22,7 @@ export function Header() {
     },
   };
 
-  const linkVariants = {
+  const linkVariants: Variants = {
     hidden: { opacity: 0, x: -20 },
     visible: (i: number) => ({
       opacity: 1,
