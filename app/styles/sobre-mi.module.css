@@ -1,0 +1,176 @@
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+/* Hero sobre mí */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.photoWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.circle {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, #ffb84d, #ff9900);
+}
+
+.textWrapper {
+  max-width: 32rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.title {
+  font-size: 1.9rem;
+  margin: 0 0 0.6rem;
+}
+
+.lead {
+  margin: 0 0 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.checkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.checkList li::before {
+  content: "✓";
+  color: var(--color-primary);
+  margin-right: 0.3rem;
+}
+
+/* Secciones comunes */
+.section {
+  margin-top: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  margin: 0 0 0.6rem;
+}
+
+.sectionText {
+  margin: 0 0 1.4rem;
+  max-width: 36rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Tarjetas forma de trabajar */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.1rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+}
+
+/* Formación y experiencia */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.subtitle {
+  margin: 0 0 0.4rem;
+  font-weight: 600;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1rem;
+  line-height: 1.6;
+}
+
+/* CTA final */
+.sectionCta {
+  margin-top: 3rem;
+}
+
+.ctaBox {
+  background: #1f1f1f;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 1.8rem 1.5rem;
+  text-align: center;
+}
+
+.ctaBox h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.4rem;
+}
+
+.ctaBox p {
+  margin: 0 0 1.2rem;
+  font-size: 0.9rem;
+}
+
+.ctaBtn {
+  display: inline-block;
+  padding: 0.65rem 1.3rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .photoWrapper {
+    order: -1;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
