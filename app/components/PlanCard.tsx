@@ -1,16 +1,19 @@
 'use client';
 
-import styles from "../styles/PlanCard.module.css";
+import Link from 'next/link';
+import styles from '../styles/PlanCard.module.css';
 import { motion } from 'framer-motion';
 import { useInView } from '@/app/hooks/useInView';
 
 type PlanCardProps = {
   label: string;
   name: string;
+  price: string;
+  pricePeriod?: string;
   description: string;
   items: string[];
   href: string;
-  variant?: "normal" | "featured";
+  variant?: 'normal' | 'featured';
   ctaText: string;
   index?: number;
 };
@@ -18,22 +21,24 @@ type PlanCardProps = {
 export function PlanCard({
   label,
   name,
+  price,
+  pricePeriod,
   description,
   items,
   href,
-  variant = "normal",
+  variant = 'normal',
   ctaText,
   index = 0,
 }: PlanCardProps) {
   const { ref, isInView } = useInView();
 
   const cardClass =
-    variant === "featured"
+    variant === 'featured'
       ? `${styles.card} ${styles.cardFeatured}`
       : styles.card;
 
   const ctaClass =
-    variant === "featured" ? styles.ctaPrimary : styles.cta;
+    variant === 'featured' ? styles.ctaPrimary : styles.cta;
 
   const variants = {
     hidden: { opacity: 0, y: 40 },
@@ -52,29 +57,38 @@ export function PlanCard({
       ref={ref}
       custom={index}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      animate={isInView ? 'visible' : 'hidden'}
       variants={variants as any}
-      className={`${cardClass} hover-lift`}
+      className={cardClass}
       whileHover={{ y: -4 }}
     >
-      <p className={styles.label}>{label}</p>
-      <h3 className={styles.name}>{name}</h3>
+      <div className={styles.header}>
+        <span className={styles.label}>{label}</span>
+        <h3 className={styles.name}>{name}</h3>
+        <div className={styles.priceContainer}>
+          <span className={styles.price}>{price}</span>
+          {pricePeriod && (
+            <span className={styles.pricePeriod}>{pricePeriod}</span>
+          )}
+        </div>
+      </div>
+
       <p className={styles.description}>{description}</p>
 
       <ul className={styles.list}>
         {items.map((item) => (
-          <li key={item}>{item}</li>
+          <li key={item}>
+            <span className={styles.checkmark}>✓</span>
+            {item}
+          </li>
         ))}
       </ul>
 
-      <motion.a
-        href={href}
-        className={ctaClass}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {ctaText}
-      </motion.a>
+      <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+        <Link href={href} className={ctaClass}>
+          {ctaText}
+        </Link>
+      </motion.div>
     </motion.article>
   );
 }
