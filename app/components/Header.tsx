@@ -51,7 +51,7 @@ export function Header() {
           transition={{ duration: 0.3 }}
         >
           <span className={styles.logoCircle}></span>
-          <span className={styles.logoText}>Salud Digestiva Online</span>
+          <span className={styles.logoText}>Diego Royano</span>
         </motion.div>
 
         {/* Desktop nav */}
@@ -71,7 +71,7 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link href="/reservar" className={styles.cta}>
+            <Link href="/contacto" className={styles.cta}>
               Reservar videollamada
             </Link>
           </motion.div>
@@ -133,7 +133,7 @@ export function Header() {
               animate="visible"
             >
               <Link
-                href="/reservar"
+                href="/contacto"
                 className={styles.ctaMobile}
                 onClick={() => setIsOpen(false)}
               >

@@ -1,10 +1,31 @@
 :root {
-  --color-primary: #ff9900;
-  --color-brown: #a67c52;
-  --color-bg: #fff8f0;
-  --color-text: #1f1f1f;
+  /* Paleta inspirada en redondocuevas.com */
+  --color-primary: #FD5825;
+  --color-primary-hover: #e54d1f;
+  --color-primary-light: #fff5f2;
 
-  --max-width: 1120px;
+  --color-text: #2D3436;
+  --color-text-muted: #636e72;
+
+  --color-bg: #ffffff;
+  --color-bg-warm: #fefbf8;
+  --color-bg-section: #f8f9fa;
+
+  --color-accent: #00b894;
+  --color-border: rgba(0, 0, 0, 0.08);
+
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  --max-width: 1200px;
 }
 
 *,
@@ -13,11 +34,24 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
   background-color: var(--color-bg);
   color: var(--color-text);
+  font-family: var(--font-body), 'Quicksand', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), 'Nunito', sans-serif;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
 }
 
 a {
@@ -28,12 +62,8 @@ a {
 main {
   min-height: 70vh;
 }
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
 
-/* Animaciones de scroll puro (sin JS) */
+/* Animaciones globales */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -45,7 +75,6 @@ html {
   }
 }
 
-/* Para usar con Intersection Observer */
 .fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -72,32 +101,7 @@ html {
 
 .hover-lift:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-}
-/* Animaciones globales */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Micro hover effects globales */
-.hover-lift {
-  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-}
-
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 /* Smooth transitions globales */
@@ -110,9 +114,4 @@ a {
 ::selection {
   background: var(--color-primary);
   color: white;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
 }

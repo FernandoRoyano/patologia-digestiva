@@ -1,7 +1,7 @@
 'use client';
 
-import styles from "../styles/home.module.css";
-import { PlanCard } from "./PlanCard";
+import styles from '../styles/home.module.css';
+import { PlanCard } from './PlanCard';
 import { motion } from 'framer-motion';
 import { useInView } from '@/app/hooks/useInView';
 
@@ -22,16 +22,17 @@ export function PlansSection() {
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
+        animate={isInView ? 'visible' : 'hidden'}
         variants={titleVariants as any}
         className={styles.plansHeader}
       >
+        <span className={styles.sectionBadge}>Planes</span>
         <h2 className={styles.plansTitle}>
-          Planes de acompañamiento digestivo
+          Planes de acompañamiento
         </h2>
         <p className={styles.plansText}>
-          Diferentes niveles de acompañamiento para adaptarnos a tu situación,
-          al tiempo del que dispones y al grado de cambio que necesitas ahora.
+          Diferentes niveles de acompañamiento para adaptarnos a tu situación.
+          Todos los precios incluyen impuestos.
         </p>
       </motion.div>
 
@@ -39,28 +40,33 @@ export function PlansSection() {
         <PlanCard
           label="Empezar"
           name="Plan Básico"
-          description="Para una primera orientación clara sobre qué puede estar pasando y qué pasos dar a continuación."
+          price="100€"
+          pricePeriod="pago único"
+          description="Primera sesión individual + pautas personalizadas + seguimiento básico por email."
           items={[
-            "1 videollamada de valoración.",
-            "Revisión de síntomas y antecedentes.",
-            "Recomendaciones iniciales por escrito.",
+            'Primera videollamada de valoración',
+            'Pautas personalizadas por email',
+            'Seguimiento básico para dudas iniciales',
           ]}
-          href="/reservar"
-          ctaText="Quiero empezar suave"
+          href="/contacto"
+          ctaText="Dar el primer paso"
           index={0}
         />
 
         <PlanCard
           label="Recomendado"
           name="Plan Intermedio"
-          description="Para quienes buscan un cambio real en su salud digestiva, con seguimiento cercano durante varias semanas."
+          price="249€"
+          pricePeriod="3 meses"
+          description="Acompañamiento continuado con sesiones de seguimiento y soporte por WhatsApp."
           items={[
-            "Videollamada inicial de valoración.",
-            "Plan de alimentación y hábitos personalizado.",
-            "Sesiones de seguimiento online.",
+            'Sesión inicial en profundidad',
+            'Estudio detallado de tu caso',
+            '4 sesiones de seguimiento (1/mes)',
+            'Acompañamiento por email o WhatsApp',
           ]}
-          href="/reservar"
-          ctaText="Hablar sobre este plan"
+          href="/contacto"
+          ctaText="Es para mí"
           variant="featured"
           index={1}
         />
@@ -68,14 +74,18 @@ export function PlansSection() {
         <PlanCard
           label="Intensivo"
           name="Plan Avanzado"
-          description="Ideal si llevas tiempo arrastrando molestias digestivas y quieres un acompañamiento más completo y estructurado."
+          price="450€"
+          pricePeriod="6 meses"
+          description="Acompañamiento completo para casos que requieren un seguimiento más cercano y prolongado."
           items={[
-            "Evaluación completa del caso.",
-            "Plan detallado por fases.",
-            "Seguimiento frecuente y ajustes.",
+            'Sesión inicial exhaustiva',
+            'Estudio completo y personalizado',
+            '6 sesiones de seguimiento (1/mes)',
+            'Acompañamiento continuo por WhatsApp',
+            'Ajustes según tu evolución',
           ]}
-          href="/reservar"
-          ctaText="Ver si encaja conmigo"
+          href="/contacto"
+          ctaText="Quiero el plan completo"
           index={2}
         />
       </div>
