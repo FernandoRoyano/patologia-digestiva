@@ -218,7 +218,7 @@ export default function SobreMiPage() {
             consulta de valoración gratuita.
           </p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/contacto" className={styles.ctaBtn}>
+            <Link href="/reservar" className={styles.ctaBtn}>
               Reservar consulta gratuita
             </Link>
           </motion.div>
