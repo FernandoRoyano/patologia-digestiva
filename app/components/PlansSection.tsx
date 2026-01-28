@@ -48,7 +48,7 @@ export function PlansSection() {
             'Pautas personalizadas por email',
             'Seguimiento básico para dudas iniciales',
           ]}
-          href="/contacto"
+          href="/reservar"
           ctaText="Dar el primer paso"
           index={0}
         />
@@ -65,7 +65,7 @@ export function PlansSection() {
             '4 sesiones de seguimiento (1/mes)',
             'Acompañamiento por email o WhatsApp',
           ]}
-          href="/contacto"
+          href="/reservar"
           ctaText="Es para mí"
           variant="featured"
           index={1}
@@ -84,7 +84,7 @@ export function PlansSection() {
             'Acompañamiento continuo por WhatsApp',
             'Ajustes según tu evolución',
           ]}
-          href="/contacto"
+          href="/reservar"
           ctaText="Quiero el plan completo"
           index={2}
         />

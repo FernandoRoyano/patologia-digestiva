@@ -138,7 +138,7 @@ export default async function ArticlePage({ params }: Props) {
           Si te identificas con lo que has leído y quieres dar el siguiente paso,
           podemos hablar sobre tu caso.
         </p>
-        <Link href="/contacto" className={styles.ctaButton}>
+        <Link href="/reservar" className={styles.ctaButton}>
           Reservar consulta
         </Link>
       </div>

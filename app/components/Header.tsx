@@ -71,7 +71,7 @@ export function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link href="/contacto" className={styles.cta}>
+            <Link href="/reservar" className={styles.cta}>
               Reservar videollamada
             </Link>
           </motion.div>
@@ -133,7 +133,7 @@ export function Header() {
               animate="visible"
             >
               <Link
-                href="/contacto"
+                href="/reservar"
                 className={styles.ctaMobile}
                 onClick={() => setIsOpen(false)}
               >

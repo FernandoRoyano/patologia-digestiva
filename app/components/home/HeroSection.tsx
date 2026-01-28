@@ -53,7 +53,7 @@ export function HeroSection() {
         </motion.p>
 
         <motion.div className={styles.heroActions} variants={itemVariants}>
-          <Link href="/contacto" className={styles.primaryBtn}>
+          <Link href="/reservar" className={styles.primaryBtn}>
             Reservar consulta
           </Link>
           <Link href="/sobre-mi" className={styles.secondaryBtn}>

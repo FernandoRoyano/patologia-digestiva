@@ -23,7 +23,7 @@ export function FinalCTA() {
         </p>
         <div className={styles.finalCtaButtons}>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="/contacto" className={styles.finalCtaButton}>
+            <Link href="/reservar" className={styles.finalCtaButton}>
               Reservar consulta gratuita
             </Link>
           </motion.div>

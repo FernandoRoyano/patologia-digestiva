@@ -81,8 +81,11 @@ export default function ContactoPage() {
             Horario de atención: Lunes a viernes de 9:00 a 18:00.
           </p>
           <p className={styles.small}>
-            Si ya has reservado una videollamada por Calendly, puedes usar este
-            correo para cambios o dudas puntuales.
+            Si prefieres reservar directamente una videollamada,{' '}
+            <a href="/reservar" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
+              haz clic aquí para agendar tu cita
+            </a>.
+            También puedes usar este correo para cambios o dudas puntuales.
           </p>
         </aside>
       </section>
