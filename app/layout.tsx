@@ -18,7 +18,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Diego Royano | Especialista en Patología Digestiva",
+  title: "DR NUTRICION | Especialista en Patología Digestiva",
   description: "Acompañamiento personalizado para mejorar tu salud digestiva. Especialista en colitis ulcerosa, SIBO e intolerancias alimentarias.",
 };
 

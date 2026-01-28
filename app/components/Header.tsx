@@ -51,7 +51,7 @@ export function Header() {
           transition={{ duration: 0.3 }}
         >
           <span className={styles.logoCircle}></span>
-          <span className={styles.logoText}>Diego Royano</span>
+          <span className={styles.logoText}>DR NUTRICION</span>
         </motion.div>
 
         {/* Desktop nav */}

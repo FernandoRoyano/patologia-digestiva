@@ -19,7 +19,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className={styles.brandName}>Diego Royano</h3>
+            <h3 className={styles.brandName}>DR NUTRICION</h3>
             <p className={styles.brandTagline}>
               Especialista en patología digestiva
             </p>
@@ -133,7 +133,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className={styles.bottomBar}>
           <p className={styles.copyright}>
-            © {currentYear} Diego Royano. Todos los derechos reservados.
+            © {currentYear} DR NUTRICION. Todos los derechos reservados.
           </p>
           <div className={styles.legalLinks}>
             <Link href="/privacidad">Política de privacidad</Link>
