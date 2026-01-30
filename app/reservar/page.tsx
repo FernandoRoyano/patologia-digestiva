@@ -14,7 +14,7 @@ export default function ReservarPage() {
 
       <div className={styles.calendarWrapper}>
         <iframe
-          src="https://calendly.com/wellnessreal/claridad?hide_gdpr_banner=1"
+          src="https://calendly.com/royanocabrerodiego/30min?hide_gdpr_banner=1"
           width="100%"
           height="700"
           frameBorder="0"
