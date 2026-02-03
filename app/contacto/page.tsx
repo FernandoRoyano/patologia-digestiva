@@ -1,6 +1,37 @@
+'use client';
+
+import { useState, FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 import styles from "../styles/contacto.module.css";
 
 export default function ContactoPage() {
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSending(true);
+    setError(false);
+
+    const form = e.currentTarget;
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        form,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      );
+      setSent(true);
+      form.reset();
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
+  }
+
   return (
     <div className={styles.page}>
       <section className={styles.header}>
@@ -15,58 +46,82 @@ export default function ContactoPage() {
 
       <section className={styles.layout}>
         <div className={styles.formWrapper}>
-          <form className={styles.form}>
-            <div className={styles.field}>
-              <label htmlFor="nombre">Nombre completo</label>
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                placeholder="Escribe tu nombre"
-              />
+          {sent ? (
+            <div className={styles.successMessage}>
+              <h2>Mensaje enviado</h2>
+              <p>
+                Gracias por escribirme. Te responderé lo antes posible.
+              </p>
+              <button
+                className={styles.submit}
+                onClick={() => setSent(false)}
+              >
+                Enviar otro mensaje
+              </button>
             </div>
+          ) : (
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.field}>
+                <label htmlFor="nombre">Nombre completo</label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  placeholder="Escribe tu nombre"
+                  required
+                />
+              </div>
 
-            <div className={styles.field}>
-              <label htmlFor="email">Correo electrónico</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="tucorreo@ejemplo.com"
-              />
-            </div>
+              <div className={styles.field}>
+                <label htmlFor="email">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="tucorreo@ejemplo.com"
+                  required
+                />
+              </div>
 
-            <div className={styles.field}>
-              <label htmlFor="motivo">Motivo principal de consulta</label>
-              <select id="motivo" name="motivo">
-                <option value="">Selecciona una opción</option>
-                <option value="sintomas">Tengo síntomas digestivos y quiero orientación</option>
-                <option value="planes">Quiero saber qué plan es mejor para mí</option>
-                <option value="agenda">Dudas sobre la reserva o horarios</option>
-                <option value="otros">Otros motivos</option>
-              </select>
-            </div>
+              <div className={styles.field}>
+                <label htmlFor="motivo">Motivo principal de consulta</label>
+                <select id="motivo" name="motivo" required>
+                  <option value="">Selecciona una opción</option>
+                  <option value="Tengo síntomas digestivos y quiero orientación">Tengo síntomas digestivos y quiero orientación</option>
+                  <option value="Quiero saber qué plan es mejor para mí">Quiero saber qué plan es mejor para mí</option>
+                  <option value="Dudas sobre la reserva o horarios">Dudas sobre la reserva o horarios</option>
+                  <option value="Otros motivos">Otros motivos</option>
+                </select>
+              </div>
 
-            <div className={styles.field}>
-              <label htmlFor="mensaje">Cuéntame brevemente tu situación</label>
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                rows={5}
-                placeholder="Escribe aquí lo que te preocupa o las dudas que tienes"
-              />
-            </div>
+              <div className={styles.field}>
+                <label htmlFor="mensaje">Cuéntame brevemente tu situación</label>
+                <textarea
+                  id="mensaje"
+                  name="mensaje"
+                  rows={5}
+                  placeholder="Escribe aquí lo que te preocupa o las dudas que tienes"
+                  required
+                />
+              </div>
 
-            <button type="submit" className={styles.submit}>
-              Enviar mensaje
-            </button>
+              <button type="submit" className={styles.submit} disabled={sending}>
+                {sending ? 'Enviando...' : 'Enviar mensaje'}
+              </button>
 
-            <p className={styles.disclaimer}>
-              Este formulario no sustituye una valoración médica. No compartas
-              datos especialmente sensibles como informes completos o resultados
-              de pruebas en este primer contacto.
-            </p>
-          </form>
+              {error && (
+                <p className={styles.errorMessage}>
+                  Hubo un error al enviar el mensaje. Inténtalo de nuevo o escríbeme directamente al correo.
+                </p>
+              )}
+
+              <p className={styles.disclaimer}>
+                Este formulario no sustituye una valoración médica. No compartas
+                datos especialmente sensibles como informes completos o resultados
+                de pruebas en este primer contacto.
+              </p>
+            </form>
+          )}
         </div>
 
         <aside className={styles.info}>
@@ -75,8 +130,7 @@ export default function ContactoPage() {
             También puedes contactar directamente por correo o teléfono si te
             resulta más cómodo.
           </p>
-          <p className={styles.highlight}>email@ejemplo.com</p>
-          <p className={styles.highlight}>+34 000 000 000</p>
+          <p className={styles.highlight}>royanocabrerodiego@gmail.com</p>
           <p className={styles.small}>
             Horario de atención: Lunes a viernes de 9:00 a 18:00.
           </p>

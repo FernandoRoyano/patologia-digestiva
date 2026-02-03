@@ -123,6 +123,33 @@
   color: rgba(0, 0, 0, 0.7);
 }
 
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.successMessage h2 {
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+  color: #2d7a4f;
+}
+
+.successMessage p {
+  margin: 0 0 1.5rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.errorMessage {
+  margin: 0.6rem 0 0;
+  font-size: 0.85rem;
+  color: #c0392b;
+}
+
 /* Responsive */
 @media (max-width: 800px) {
   .layout {
