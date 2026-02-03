@@ -1,5 +1,3 @@
-'use client';
-
 import styles from './styles/home.module.css';
 import { HeroSection } from './components/home/HeroSection';
 import { SpecialtiesSection } from './components/home/SpecialtiesSection';
