@@ -14,16 +14,24 @@ export function AboutPreview() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8 }}
         >
           <div className={styles.aboutImageWrapper}>
+            <div className={styles.aboutImageDecor} aria-hidden />
             <Image
               src="/diego.jpg"
               alt="Diego Royano"
               fill
-              sizes="(max-width: 768px) 100vw, 400px"
+              sizes="(max-width: 768px) 100vw, 420px"
               className={styles.aboutImg}
             />
+            <div className={styles.aboutImageBadge}>
+              <span style={{ fontSize: '1.5rem' }}>🫀</span>
+              <div>
+                <strong>+6 años sin síntomas</strong>
+                <span>Sin medicación ni recaídas</span>
+              </div>
+            </div>
           </div>
         </motion.div>
 
@@ -32,12 +40,12 @@ export function AboutPreview() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.8 }}
         >
           <span className={styles.sectionBadge}>Sobre mí</span>
           <h2 className={styles.aboutTitle}>
             No soy solo un profesional.<br />
-            Soy alguien que ha pasado por donde tú estás.
+            Soy alguien que ha <em>pasado por donde tú estás</em>.
           </h2>
           <p className={styles.aboutDescription}>
             A los 20 años me diagnosticaron colitis ulcerosa. Los médicos me dijeron
@@ -62,9 +70,13 @@ export function AboutPreview() {
               <span className={styles.credentialIcon}>📚</span>
               <span>Máster en Nutrición Clínica</span>
             </div>
+            <div className={styles.credential}>
+              <span className={styles.credentialIcon}>💚</span>
+              <span>Experiencia personal</span>
+            </div>
           </div>
           <Link href="/sobre-mi" className={styles.aboutLink}>
-            Conoce mi historia completa →
+            Conoce mi historia completa <span aria-hidden>→</span>
           </Link>
         </motion.div>
       </div>

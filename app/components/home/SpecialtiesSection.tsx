@@ -33,37 +33,38 @@ const specialties = [
 export function SpecialtiesSection() {
   return (
     <section className={styles.specialtiesSection}>
-      <motion.div
-        className={styles.sectionHeader}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className={styles.sectionBadge}>Especialidades</span>
-        <h2 className={styles.sectionTitle}>¿En qué puedo ayudarte?</h2>
-        <p className={styles.sectionSubtitle}>
-          Me especializo en problemas digestivos complejos que requieren un enfoque
-          personalizado e integral.
-        </p>
-      </motion.div>
+      <div className={styles.specialtiesInner}>
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className={styles.sectionBadge}>Especialidades</span>
+          <h2 className={styles.sectionTitle}>¿En qué puedo ayudarte?</h2>
+          <p className={styles.sectionSubtitle}>
+            Me especializo en problemas digestivos complejos que requieren un enfoque
+            personalizado e integral.
+          </p>
+        </motion.div>
 
-      <div className={styles.specialtiesGrid}>
-        {specialties.map((specialty, index) => (
-          <motion.div
-            key={specialty.title}
-            className={styles.specialtyCard}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -4 }}
-          >
-            <span className={styles.specialtyIcon}>{specialty.icon}</span>
-            <h3 className={styles.specialtyTitle}>{specialty.title}</h3>
-            <p className={styles.specialtyDescription}>{specialty.description}</p>
-          </motion.div>
-        ))}
+        <div className={styles.specialtiesGrid}>
+          {specialties.map((specialty, index) => (
+            <motion.article
+              key={specialty.title}
+              className={styles.specialtyCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
+            >
+              <span className={styles.specialtyIcon}>{specialty.icon}</span>
+              <h3 className={styles.specialtyTitle}>{specialty.title}</h3>
+              <p className={styles.specialtyDescription}>{specialty.description}</p>
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -30,47 +30,49 @@ const testimonials = [
 export function TestimonialsSection() {
   return (
     <section className={styles.testimonialsSection}>
-      <motion.div
-        className={styles.sectionHeader}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <span className={styles.sectionBadge}>Testimonios</span>
-        <h2 className={styles.sectionTitle}>Lo que dicen quienes han trabajado conmigo</h2>
-        <p className={styles.sectionSubtitle}>
-          Experiencias reales de personas que decidieron tomar las riendas de su salud digestiva.
-        </p>
-      </motion.div>
+      <div className={styles.testimonialsInner}>
+        <motion.div
+          className={styles.sectionHeader}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className={styles.sectionBadge}>Testimonios</span>
+          <h2 className={styles.sectionTitle}>Lo que dicen quienes han trabajado conmigo</h2>
+          <p className={styles.sectionSubtitle}>
+            Experiencias reales de personas que decidieron tomar las riendas de su salud digestiva.
+          </p>
+        </motion.div>
 
-      <div className={styles.testimonialsGrid}>
-        {testimonials.map((testimonial, index) => (
-          <motion.div
-            key={testimonial.id}
-            className={styles.testimonialCard}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <div className={styles.testimonialRating}>
-              {[...Array(testimonial.rating)].map((_, i) => (
-                <span key={i} className={styles.star}>★</span>
-              ))}
-            </div>
-            <p className={styles.testimonialText}>"{testimonial.text}"</p>
-            <div className={styles.testimonialAuthor}>
-              <div className={styles.testimonialAvatar}>
-                {testimonial.name.charAt(0)}
+        <div className={styles.testimonialsGrid}>
+          {testimonials.map((testimonial, index) => (
+            <motion.article
+              key={testimonial.id}
+              className={styles.testimonialCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: index * 0.1 }}
+            >
+              <div className={styles.testimonialRating}>
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <span key={i} className={styles.star}>★</span>
+                ))}
               </div>
-              <div>
-                <p className={styles.testimonialName}>{testimonial.name}</p>
-                <p className={styles.testimonialLocation}>{testimonial.location}</p>
+              <p className={styles.testimonialText}>{testimonial.text}</p>
+              <div className={styles.testimonialAuthor}>
+                <div className={styles.testimonialAvatar}>
+                  {testimonial.name.charAt(0)}
+                </div>
+                <div>
+                  <p className={styles.testimonialName}>{testimonial.name}</p>
+                  <p className={styles.testimonialLocation}>{testimonial.location}</p>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.article>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Quicksand, Nunito } from "next/font/google";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

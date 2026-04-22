@@ -1,13 +1,33 @@
 .footer {
-  background-color: var(--color-text);
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 60% at 80% 0%, rgb(var(--color-primary-rgb) / 0.15), transparent 60%),
+    linear-gradient(180deg, rgb(var(--color-surface-dark-rgb)) 0%, rgb(8 14 22) 100%);
   color: white;
   margin-top: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at top, black 30%, transparent 80%);
+          mask-image: radial-gradient(ellipse at top, black 30%, transparent 80%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 4rem 1.5rem 2rem;
+  padding: var(--space-lg) var(--space-sm) var(--space-sm);
+  position: relative;
 }
 
 .grid {
@@ -112,15 +132,19 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.7);
   transition: all 0.3s ease;
 }
 
 .socialLink:hover {
   background: var(--color-primary);
+  border-color: var(--color-primary);
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(253, 88, 37, 0.5);
 }
 
 /* Newsletter Column */
@@ -138,14 +162,19 @@
 }
 
 .newsletterInput {
-  padding: 0.75rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
   color: white;
   font-size: 0.9rem;
   font-family: inherit;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.newsletterInput:focus {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .newsletterInput::placeholder {
@@ -158,20 +187,60 @@
 }
 
 .newsletterButton {
-  padding: 0.75rem 1.5rem;
-  background: var(--color-primary);
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, rgb(var(--color-primary-rgb)), rgb(var(--color-primary-dark-rgb)));
   color: white;
   border: none;
   border-radius: var(--radius-sm);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   font-family: inherit;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.2) inset,
+    0 6px 16px -4px rgba(253, 88, 37, 0.5);
+}
+
+.newsletterButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset,
+    0 10px 24px -6px rgba(253, 88, 37, 0.6);
+}
+
+.newsletterButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.newsletterSuccess {
+  font-size: 0.9rem;
+  color: #4ade80;
+  margin: 0;
+}
+
+.newsletterError {
+  font-size: 0.85rem;
+  color: #f87171;
+  margin: 0;
+}
+
+.downloadLink {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--color-accent);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
   transition: background 0.3s ease;
 }
 
-.newsletterButton:hover {
-  background: var(--color-primary-hover);
+.downloadLink:hover {
+  background: #009b7d;
+  color: white;
 }
 
 /* Bottom Bar */

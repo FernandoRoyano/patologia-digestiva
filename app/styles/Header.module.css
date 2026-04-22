@@ -1,18 +1,34 @@
 .header {
-  border-bottom: 1px solid var(--color-border);
-  background-color: white;
   position: sticky;
   top: 0;
   z-index: 100;
+  background: transparent;
+  transition: background var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-out),
+              border-color var(--duration-base) var(--ease-out);
+  border-bottom: 1px solid transparent;
+}
+
+.header.scrolled {
+  background: rgb(var(--color-surface-rgb) / 0.78);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  border-bottom-color: rgb(var(--color-border-rgb) / 0.6);
+  box-shadow: 0 6px 24px -10px rgb(20 28 38 / 0.12);
 }
 
 .inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.logoLink {
+  display: block;
 }
 
 .logo {
@@ -24,72 +40,99 @@
 }
 
 .logoCircle {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--color-primary);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgb(var(--color-primary-rgb)) 0%, rgb(var(--color-primary-dark-rgb)) 100%);
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.35) inset,
+    0 6px 16px -4px rgb(var(--color-primary-rgb) / 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.logoCircle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.25), transparent 50%);
+}
+
+.logoMonogram {
+  font-family: var(--font-heading), 'Nunito', sans-serif;
+  font-weight: 800;
+  color: white;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
 }
 
 .logoText {
-  font-weight: 700;
-  font-size: 1rem;
-  white-space: nowrap;
-  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 3px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: rgb(var(--color-ink-rgb));
+}
+
+.logoTag {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: rgb(var(--color-ink-soft-rgb));
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
 }
 
 /* Desktop Navigation */
 .navDesktop {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  font-size: 0.95rem;
+  gap: 0.4rem;
+  font-size: var(--text-sm);
 }
 
 .navLink {
   position: relative;
-  transition: color 0.3s ease;
-  cursor: pointer;
-  padding: 0.5rem 0;
-  color: var(--color-text);
-  font-weight: 500;
-}
-
-.navLink::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-primary);
-  transition: width 0.3s ease;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--radius-full);
+  color: rgb(var(--color-ink-rgb));
+  font-weight: 600;
+  transition: color var(--duration-base) var(--ease-out),
+              background var(--duration-base) var(--ease-out);
 }
 
 .navLink:hover {
-  color: var(--color-primary);
-}
-
-.navLink:hover::after {
-  width: 100%;
+  background: rgb(var(--color-primary-rgb) / 0.08);
+  color: rgb(var(--color-primary-rgb));
 }
 
 .cta {
-  padding: 0.625rem 1.25rem;
+  margin-left: 0.75rem;
+  padding: 0.65rem 1.2rem;
   border-radius: var(--radius-full);
-  background: var(--color-primary);
+  background: linear-gradient(135deg, rgb(var(--color-primary-rgb)) 0%, rgb(var(--color-primary-dark-rgb)) 100%);
   color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.25) inset,
+    0 6px 18px -4px rgb(var(--color-primary-rgb) / 0.5);
 }
 
 .cta:hover {
-  background: var(--color-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(253, 88, 37, 0.3);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.25) inset,
+    0 10px 28px -6px rgb(var(--color-primary-rgb) / 0.6);
 }
 
 .cta:active {
@@ -101,17 +144,20 @@
   display: none;
   flex-direction: column;
   gap: 5px;
-  background: none;
-  border: none;
+  background: rgb(var(--color-surface-rgb) / 0.8);
+  border: 1px solid rgb(var(--color-border-rgb) / 0.6);
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.6rem;
   z-index: 101;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .hamburger span {
-  width: 24px;
+  width: 20px;
   height: 2px;
-  background: var(--color-text);
+  background: rgb(var(--color-ink-rgb));
   border-radius: 2px;
   display: block;
   transition: all 0.3s ease;
@@ -125,35 +171,31 @@
 .navLinkMobile {
   display: block;
   padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--color-border);
-  transition: all 0.3s ease;
-  font-weight: 500;
-  color: var(--color-text);
+  border-bottom: 1px solid rgb(var(--color-border-rgb) / 0.4);
+  font-weight: 600;
+  color: rgb(var(--color-ink-rgb));
+  transition: all 0.2s ease;
 }
 
 .navLinkMobile:hover {
-  background: var(--color-primary-light);
-  color: var(--color-primary);
+  background: rgb(var(--color-primary-rgb) / 0.06);
+  color: rgb(var(--color-primary-rgb));
 }
 
 .ctaMobile {
   display: block;
-  padding: 0.875rem 1.5rem;
-  background: var(--color-primary);
+  padding: 0.95rem 1.5rem;
+  background: linear-gradient(135deg, rgb(var(--color-primary-rgb)) 0%, rgb(var(--color-primary-dark-rgb)) 100%);
   color: white;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
   margin: 1rem 1.5rem;
   border-radius: var(--radius-full);
-  transition: all 0.3s ease;
-}
-
-.ctaMobile:hover {
-  background: var(--color-primary-hover);
+  box-shadow: var(--shadow-glow-sm);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   .navDesktop {
     display: none;
   }
@@ -164,13 +206,11 @@
 
   .navMobile {
     display: block;
-    background: white;
-    border-top: 1px solid var(--color-border);
+    background: rgb(var(--color-surface-rgb) / 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgb(var(--color-border-rgb) / 0.5);
     overflow: hidden;
-  }
-
-  .logoText {
-    font-size: 0.9rem;
   }
 }
 
@@ -179,12 +219,11 @@
     padding: 0.75rem 1rem;
   }
 
-  .logoCircle {
-    width: 32px;
-    height: 32px;
+  .logoTag {
+    display: none;
   }
 
   .logoText {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 }

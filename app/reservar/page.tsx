@@ -17,7 +17,7 @@ export default function ReservarPage() {
           src="https://calendly.com/royanocabrerodiego/30min?hide_gdpr_banner=1"
           width="100%"
           height="700"
-          frameBorder="0"
+          style={{ border: 'none' }}
           title="Reservar videollamada"
         />
       </div>

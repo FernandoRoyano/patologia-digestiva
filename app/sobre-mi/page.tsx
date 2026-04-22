@@ -44,7 +44,8 @@ export default function SobreMiPage() {
           <ul className={styles.checkList}>
             <li>Dietista - Técnico Superior en Nutrición Humana y Dietética</li>
             <li>Grado en Psicología</li>
-            <li>Máster en Nutrición Clínica</li>
+            <li>Máster en Nutrición Clínica Avanzada (ICNS)</li>
+            <li>Especializado en eje intestino-cerebro</li>
             <li>Más de 6 años sin síntomas de colitis ulcerosa</li>
           </ul>
         </motion.div>
@@ -108,6 +109,98 @@ export default function SobreMiPage() {
           </p>
         </div>
       </motion.section>
+
+      {/* TIMELINE */}
+      <section className={styles.timelineSection}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionBadge}>Mi recorrido</span>
+          <h2 className={styles.sectionTitle}>Hitos de mi trayectoria</h2>
+        </div>
+
+        <div className={styles.timeline}>
+          {[
+            {
+              year: '2015',
+              title: 'Diagnóstico de colitis ulcerosa',
+              description:
+                'A los 20 años recibo el diagnóstico. Comienza mi viaje personal hacia la salud digestiva.',
+            },
+            {
+              year: '2016',
+              title: 'Remisión sin medicación',
+              description:
+                'Tras 10-12 meses de cambios profundos en alimentación y hábitos, logro una remisión completa.',
+            },
+            {
+              year: '2018',
+              title: 'Técnico Superior en Nutrición',
+              description:
+                'Obtengo la titulación oficial que formaliza el conocimiento adquirido por experiencia.',
+            },
+            {
+              year: '2020',
+              title: 'Grado en Psicología',
+              description:
+                'Completo la carrera, integrando la dimensión emocional en el abordaje de la salud digestiva.',
+            },
+            {
+              year: '2022',
+              title: 'Máster en Nutrición Clínica (ICNS)',
+              description:
+                'Especialización avanzada en nutrición clínica y patología digestiva.',
+            },
+            {
+              year: '2024',
+              title: 'Lanzamiento de DR NUTRICION',
+              description:
+                'Inicio del acompañamiento online dedicado exclusivamente a patología digestiva.',
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={item.year}
+              className={styles.timelineItem}
+              initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <div className={styles.timelineYear}>{item.year}</div>
+              <div className={styles.timelineContent}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* RESULTADOS */}
+      <section className={styles.resultsSection}>
+        <div className={styles.sectionHeader}>
+          <span className={styles.sectionBadge}>Resultados</span>
+          <h2 className={styles.sectionTitle}>El impacto del acompañamiento</h2>
+        </div>
+
+        <div className={styles.statsGrid}>
+          {[
+            { number: '+6', label: 'años sin síntomas de colitis ulcerosa' },
+            { number: '100%', label: 'consultas online, desde cualquier lugar' },
+            { number: '5', label: 'titulaciones especializadas en salud' },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              className={styles.statCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+            >
+              <span className={styles.statNumber}>{stat.number}</span>
+              <p className={styles.statLabel}>{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/* FILOSOFÍA */}
       <section className={styles.section}>

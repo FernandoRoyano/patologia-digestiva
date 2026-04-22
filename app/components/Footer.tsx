@@ -1,11 +1,33 @@
 'use client';
 
+import { useState, useRef, FormEvent } from 'react';
 import Link from 'next/link';
+import emailjs from '@emailjs/browser';
 import styles from '../styles/Footer.module.css';
 import { motion } from 'framer-motion';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const newsletterFormRef = useRef<HTMLFormElement>(null);
+
+  async function handleNewsletter(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setNewsletterStatus('sending');
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        e.currentTarget,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+      );
+      setNewsletterStatus('sent');
+      newsletterFormRef.current?.reset();
+    } catch {
+      setNewsletterStatus('error');
+    }
+  }
 
   return (
     <footer className={styles.footer}>
@@ -69,8 +91,8 @@ export function Footer() {
             <ul className={styles.contactList}>
               <li>
                 <span className={styles.contactIcon}>📧</span>
-                <a href="mailto:diego@saluddigestivaonline.com">
-                  diego@saluddigestivaonline.com
+                <a href="mailto:royanocabrerodiego@gmail.com">
+                  royanocabrerodiego@gmail.com
                 </a>
               </li>
               <li>
@@ -114,19 +136,50 @@ export function Footer() {
           >
             <h4 className={styles.columnTitle}>Newsletter</h4>
             <p className={styles.newsletterText}>
-              Recibe consejos sobre salud digestiva directamente en tu email.
+              Suscr&iacute;bete y recibe <strong>GRATIS</strong> la gu&iacute;a
+              &ldquo;5 errores que empeoran tu salud digestiva&rdquo;.
             </p>
-            <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="Tu email"
-                className={styles.newsletterInput}
-                required
-              />
-              <button type="submit" className={styles.newsletterButton}>
-                Suscribirme
-              </button>
-            </form>
+            {newsletterStatus === 'sent' ? (
+              <div className={styles.newsletterSuccess}>
+                <p>¡Gracias por suscribirte!</p>
+                <a
+                  href="/downloads/5-errores-salud-digestiva.pdf"
+                  download
+                  className={styles.downloadLink}
+                >
+                  Descargar guía gratuita
+                </a>
+              </div>
+            ) : (
+              <form
+                ref={newsletterFormRef}
+                className={styles.newsletterForm}
+                onSubmit={handleNewsletter}
+              >
+                <input type="hidden" name="nombre" value="Suscriptor Newsletter" />
+                <input type="hidden" name="motivo" value="Suscripción a newsletter" />
+                <input type="hidden" name="mensaje" value="Quiero recibir la newsletter de salud digestiva." />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Tu email"
+                  className={styles.newsletterInput}
+                  required
+                />
+                <button
+                  type="submit"
+                  className={styles.newsletterButton}
+                  disabled={newsletterStatus === 'sending'}
+                >
+                  {newsletterStatus === 'sending' ? 'Enviando...' : 'Suscribirme'}
+                </button>
+                {newsletterStatus === 'error' && (
+                  <p className={styles.newsletterError}>
+                    Error al suscribirte. Inténtalo de nuevo.
+                  </p>
+                )}
+              </form>
+            )}
           </motion.div>
         </div>
 
